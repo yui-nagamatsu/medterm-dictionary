@@ -1,0 +1,33 @@
+version: '3.9'
+
+volumes:
+  mysite.db.volume:
+    name: mysite.db.volume
+
+services:
+
+    db:
+        platform: linux/x86_64
+        build: ./db
+        container_name: db_container
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            TZ: 'Asia/Tokyo'
+        volumes:
+            - mysite.db.volume:/var/lib/mysql
+            - ./db/init:/docker-entrypoint-initdb.d
+
+    app:
+        build: ./app
+        container_name: app_container
+        ports:
+            - 8000:8000
+#        command: uwsgi --socket :8001 --module pjevent.wsgi
+        volumes:
+            - ./app/src:/usr/src
+        expose:
+            - "8000"
+        depends_on:
+            - db

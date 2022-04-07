@@ -8,11 +8,10 @@
 </head>
  
 <body>
-
     <h2>Browse the Medical Dictionary</h2>
     <h2>Word of the day</h2>
     {% for term in word_of_the_day %}
-        {{ term }}
+        <a href="{% url 'backend:detail' term.pk %}">{{ term }}</a>
     {% endfor %}
 </body>
  

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>index</title>
+</head>
+ 
+<body>
+
+    <h2>Browse the Medical Dictionary</h2>
+    <h2>Word of the day</h2>
+    {% for term in word_of_the_day %}
+        {{ term }}
+    {% endfor %}
+</body>
+ 
+</html>

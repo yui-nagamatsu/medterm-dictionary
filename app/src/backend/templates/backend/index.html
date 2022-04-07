@@ -8,6 +8,10 @@
 </head>
  
 <body>
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query}}" type="text">
+        <button rype="submit">Search the Medical Dictionary</button>
+    </form>    
     <h2>Browse the Medical Dictionary</h2>
         {% for alphabet in alphabet_list %}
         <button href="">

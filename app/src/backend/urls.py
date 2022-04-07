@@ -4,5 +4,6 @@ from .views import backend
 
 app_name = 'backend'
 urlpatterns = [
-    path('', backend.index, name="index"),
+    path('', backend.IndexView.as_view(), name = 'index'),
+    path('detail/<int:pk>/', backend.TermDetail.as_view(), name='detail')
 ]

@@ -13,6 +13,11 @@
         <button rype="submit">Search the Medical Dictionary</button>
     </form>    
     <h2>Browse the Medical Dictionary</h2>
+        {% for alphabet in alphabet_list %}
+        <button href="{% url 'backend:browse' %">
+          {{ alphabet }}
+        </button>
+        {% endfor %}
     <h2>Word of the day</h2>
     {% for term in word_of_the_day %}
         <a href="{% url 'backend:detail' term.pk %}">{{ term }}</a>

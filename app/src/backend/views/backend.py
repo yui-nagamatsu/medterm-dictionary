@@ -15,8 +15,8 @@ class IndexView(ListView):
         context['alphabet_list'] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1-9']
         return context
 
-class SearchView(ListView):
-    template_name = 'backend/index.html'
+class SearchResultView(ListView):
+    template_name = 'backend/search_result.html'
     def get_queryset(self):
         q_word = self.request.GET.get('query')
         if q_word:

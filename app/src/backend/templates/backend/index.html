@@ -1,27 +1,106 @@
 <!DOCTYPE html>
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'backend/style.css' %}">
+<link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+<link rel="icon" href="{% static 'backend/images/favicon.ico' %}" id="favicon">
 <html>
  
 <head>
     <meta charset="utf-8" />
     <title>index</title>
 </head>
- 
 <body>
-    <form action="{% url 'backend:search_result' %}" method="GET">
-        <input name="query" value="{{ request.GET.query}}" type="text">
-        <button rype="submit">Search the Medical Dictionary</button>
-    </form>    
-    <h2>Browse the Medical Dictionary</h2>
-        {% for alphabet in alphabet_list %}
-        <button href="{% url 'backend:browse' %">
-          {{ alphabet }}
-        </button>
-        {% endfor %}
-    <h2>Word of the day</h2>
-    {% for term in word_of_the_day %}
-        <a href="{% url 'backend:detail' term.pk %}">{{ term }}</a>
-    {% endfor %}
+    <div class="outer-container">
+        <header>
+            <div class="container navbar">
+                <img class="logo" src="{% static 'backend/images/logo.png' %}">
+                <div class="search-cnt">
+                    <nav class="link-bar">
+                        <div class="link-bar-l" role="navigation">
+                            <a class="link-bar-l__link" href="">ALL WORDS</a>
+                            <a class="link-bar-l__link" target="_blank" rel="noopener noreferrer" href="">REFERENCES</a>
+                            <a class="link-bar-l__link" target="_blank" rel="noopener noreferrer" href="">ABOUT ME</a>
+                            <a class="link-bar-l__link" target="_blank" rel="noopener noreferrer" href="">SUBSCRIBE</a>
+                        </div>
+                        <div class="link-bar-r ul-login-menu user-logged-state">
+                            <a rel="nofollow" href="/login">LOG IN</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="main-container">
+            <h1 class="u-title-type1">Medical Dictionary</h1>
+            <div class="contents">
+                <div class="left-content">
+                    <div class="the-search-wrapper">
+                        <div class="search-box">
+                            <form action="{% url 'backend:search_result' %}" method="GET">
+                            <input id="input-box" name="query" placeholder="Enter a Word" value="{{ request.GET.query}}" type="text">
+                            <button type="submit" placeholder="" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <p>Search medical terms with the most up-to-date and comprehensive medical dictionary.  <br> Master today's medical vocabulary. Become an informed health-care expert!</p>
+                            </form>
+                        </div>
+                    </div>
+                    <hr class="blue-divide">
+                    <div class="the-browse-wrapper">    
+                        <h2 id="browse-dictionary-headline">Browse Dictionary by Letter</h2>
+                        <div class="browse-word">
+                            {% for alphabet in alphabet_list %}
+                            <button href="{% url 'backend:browse' %}" class="alpha-button">
+                            {{ alphabet }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr class="blue-divide">
+                </div>
+                <div class="right-content">
+                    <div class="the-wotd-wrapper">
+                        <h3 class="wotd-title">Word of the day</h3>
+                        <div class="wotd-divider"></div>
+                        <div class="wotd-headword">
+                            {% for term in word_of_the_day %}
+                                <h4><a href="{% url 'backend:detail' term.pk %}">{{ term }}</a></h4>
+                            {% endfor %}
+                        </div>
+                        <p class="wotd-jump">
+                            {% for term in word_of_the_day %}
+                            <a href="{% url 'backend:detail' term.pk %}">See Definitions </a> »
+                            {% endfor %}
+                        </p>
+                        <div class="wotd-subscribe">
+                            <p class="wotd-subscribe-line">Get Word of the Day daily email!</p>
+                            <form class="wotd-subscribe-form" action="/word-of-the-day" method="post">
+                                <input type="submit" class="wotd-submit wotd-subscribe-form-submit" name="wod-submit" value="SUBSCRIBE">
+                                <input type="text" class="wotd-subscribe wotd-subscribe-form-input" name="wod-subscribe" placeholder="Your email address" aria-label="Subscribe to Word of the Day">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-contents">
+                <div class="footer-browse-word">
+                    Browse the Dictionary:    
+                    {% for alphabet in alphabet_list %}
+                    <a href="{% url 'backend:browse' %}" class="alpha-anchor">
+                    {{ alphabet }}
+                    </a>
+                    {% endfor %}
+                </div>
+                <div class="footer-menu">
+                    <a class="footer-menu-item">HOME</a>
+                    <a class="footer-menu-item">ALL WORDS</a>
+                    <a class="footer-menu-item">REFERENCES</a>
+                    <a class="footer-menu-item">SUBSCRIBE</a>
+                    <a class="footer-menu-item">ABOUT ME</a>
+                </div>
+            </div>
+            <p class="copyright">© 2022 Yui Nagamatsu</p>
+        </footer>
+    </div>  
 </body>
  
 </html>

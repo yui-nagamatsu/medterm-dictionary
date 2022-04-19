@@ -369,10 +369,15 @@ hr{
     letter-spacing: .07201em;
 }
 
+.wotd-headword a:hover{
+    text-decoration: underline;
+}
+
 .wotd-jump a{
     font-size: 16px;
     color: #3b3e41;
     font-family: Open Sans,Helvetica,Arial,sans-serif;
+    text-decoration: underline;
     line-height: 22px;
     letter-spacing: 1.1px;
     text-align: center;
@@ -393,7 +398,6 @@ hr{
 .wotd-subscribe-line {
     color: #0f3850;
     font-family: Open Sans,Helvetica,Arial,sans-serif;
-    text-decoration: underline;
     font-size: .875em;
     letter-spacing: .0625em;
     line-height: 1.75em;
